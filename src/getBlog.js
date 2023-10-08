@@ -3,7 +3,8 @@ const cors = require("cors");
 const app = express();
 const {MongoClient} = require('mongodb');
 const mongoose = require('mongoose')
-const {updateData, retrieveData, retrieveMultiData} = require('./database_tools');
+const {retrieveData, retrieveMultiData} = require('./database_tools');
+const router = express.Router();
 const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
@@ -68,20 +69,24 @@ async function getBlogs(){
     }
 }
 
-app.get('/blogs', async function(req, res){
+router.get('/blogs', async function(req, res){
     const result = await getBlogs()
     res.json(JSON.stringify({status: true, message: result}))
 })
 
-app.get('/blog', async function(req, res){
+router.get('/blog', async function(req, res){
     const result = await getBlogBasedOnTopic(req.query.topic)
     res.json(JSON.stringify({status: true, message: result}))
 })
 
-app.get('/images/', async function(req, res){
+router.get('/images/', async function(req, res){
     const result = await gfs.files.findOne({ filename: req.query.filename })
     const readStream = gridfsBucket.openDownloadStream(result._id);
     readStream.pipe(res);
 });
 
-app.listen(4001);
+app.use(`/.netlify/functions/getBlog`, router);
+module.exports = app;
+module.exports.handler = serverless(app);
+
+// app.listen(4001);

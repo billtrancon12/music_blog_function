@@ -5,6 +5,7 @@ const {MongoClient, GridFSBucket} = require('mongodb');
 const mongoose = require('mongoose')
 const {updateData, retrieveData} = require('./database_tools');
 const multer = require('multer')
+const router = express.Router()
 const {GridFsStorage} = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const fs = require('fs')
@@ -128,7 +129,7 @@ async function putFile(path){
     }
 }
 
-app.post('/check', async function(req, res){
+router.post('/check', async function(req, res){
     if(req.body.topic === ""){
         res.json(JSON.stringify({status: false, message: "Topic cannot be empty!"}))
         return
@@ -146,7 +147,7 @@ app.post('/check', async function(req, res){
     res.json(JSON.stringify({status: true, message: "Success!"}))
 })
 
-app.post('/upload', upload.single('file_input'), async function(req, res){
+router.post('/upload', upload.single('file_input'), async function(req, res){
     result = await putBlog(req.body.topic, headerImageName, req.body.date, req.body.content)
 
     if(result === undefined || result === null){
@@ -156,10 +157,14 @@ app.post('/upload', upload.single('file_input'), async function(req, res){
     res.json(JSON.stringify({status: true, message: "Success"}));
 })
 
-app.get('/files/', async function(req, res){
+router.get('/files/', async function(req, res){
     const result = await gfs.files.findOne({ filename: req.query.filename })
     const readStream = gridfsBucket.openDownloadStream(result._id);
     readStream.pipe(res);
 });
 
-app.listen(4000);
+app.use(`/.netlify/functions/postBlog`, router);
+
+module.exports = app;
+module.exports.handler = serverless(app);
+// app.listen(4000);
