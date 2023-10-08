@@ -1,0 +1,16 @@
+[build]
+  functions = "functions"
+
+[build.environment]
+  db_username="billtrancon12"
+  db_password="LiamNgoan%40123"
+  MONGO_URI="mongodb+srv://billtrancon12:LiamNgoan%40123@cluster0.liou3p7.mongodb.net/MusicBlogProject" 
+
+[dev]
+  publish = "dist"
+
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover.
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"

@@ -1,0 +1,28 @@
+Exam Review Network Security:
+
+1. Security mechanism
+2. Discuss buffer overflow attack and how to defend. Compile time defend and run time defend
+3. IT revolution?
+4. Slammer worm (sapphire)
+5. Two crypto systems: symmetric and asymmetric key encryption
+6. buffer overflow attack question on stack. Knowledge about buffer overflow attack
+7. Defend against buffer overflow attack but implemented in hardware
+8. Buffer overflow attack question attack on hardware (how to mount the attack, what happens in the hardware)
+9. Buffer overflow attack. How the memory organizes? How to put the instruction code...
+10.Malware and how to classify them
+11. The foundation of modern symmetric encryption key algorithm
+12. Application of Data Encryption Standard (DES)
+13. Early cipher
+14. X800 concepts and definition (HW1)
+15. Computer Network, package switching (how the computer networks were built)
+16. X800 Security Services
+17. General picture of symmetric and asymmetric key encryption (private key and public key encryption)
+18. One of the defense against buffer overflow attack (run time defense)
+19. Brute force attack on symmetric key crypto system
+20. Bot net. Understand, Stages, Characteristics and how to defend
+21. Security Controls and Security Policies. More about Security Control
+22. DES General knowledge about DES
+23. Compile time defense and runtime defense. Differentiate which one is which?
+24. DES more details more levels. Binary and hexadecimal questions.
+
+
