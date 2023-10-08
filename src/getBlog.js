@@ -85,7 +85,7 @@ router.get('/images/', async function(req, res){
     readStream.pipe(res);
 });
 
-app.use(`/.netlify/functions/getBlog`, router);
+app.use(`/.netlify/express/getBlog`, router);
 module.exports = app;
 module.exports.handler = serverless(app);
 

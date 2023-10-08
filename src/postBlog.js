@@ -163,7 +163,7 @@ router.get('/files/', async function(req, res){
     readStream.pipe(res);
 });
 
-app.use(`/.netlify/functions/postBlog`, router);
+app.use(`/.netlify/express/postBlog`, router);
 
 module.exports = app;
 module.exports.handler = serverless(app);

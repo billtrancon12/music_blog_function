@@ -1,5 +1,5 @@
 [build]
-  functions = "functions"
+  functions = "express"
 
 [build.environment]
   db_username="billtrancon12"
